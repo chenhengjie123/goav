@@ -54,6 +54,6 @@ func (p *Packet) Data() *uint8 {
 	return (*uint8)(p.data)
 }
 
-func (p *Packet) setData(data []byte) {
+func (p *Packet) SetData(data []byte) {
 	p.data = (*C.uint8_t)(unsafe.Pointer(&data[0]))
 }
