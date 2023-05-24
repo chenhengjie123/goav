@@ -52,6 +52,7 @@ func (p *Packet) SetPts(pts int64) {
 func (p *Packet) Data() *uint8 {
 	return (*uint8)(p.data)
 }
-func (p *Packet) setData(data *uint8) {
-	p.data = C.uint8_t(data)
-}
+
+// func (p *Packet) setData(data *uint8) {
+// 	p.data = C.uint8_t(data)
+// }

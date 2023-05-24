@@ -180,9 +180,9 @@ func AvcodecFindDecoder(id CodecId) *Codec {
 	return (*Codec)(C.avcodec_find_decoder((C.enum_AVCodecID)(id)))
 }
 
-func AvCodecIterate(p *unsafe.Pointer) *Codec {
-	return (*Codec)(C.av_codec_iterate(p))
-}
+// func AvCodecIterate(p *unsafe.Pointer) *Codec {
+// 	return (*Codec)(C.av_codec_iterate(p))
+// }
 
 //Find a registered decoder with the specified name.
 func AvcodecFindDecoderByName(n string) *Codec {
