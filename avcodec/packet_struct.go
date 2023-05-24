@@ -6,6 +6,7 @@ package avcodec
 //#cgo pkg-config: libavcodec
 //#include <libavcodec/avcodec.h>
 import "C"
+import "unsafe"
 
 func (p *Packet) Buf() *AvBufferRef {
 	return (*AvBufferRef)(p.buf)
@@ -53,6 +54,6 @@ func (p *Packet) Data() *uint8 {
 	return (*uint8)(p.data)
 }
 
-// func (p *Packet) setData(data *uint8) {
-// 	p.data = C.uint8_t(data)
-// }
+func (p *Packet) setData(data []byte) {
+	p.data = (*C.uint8_t)(unsafe.Pointer(&data[0]))
+}
