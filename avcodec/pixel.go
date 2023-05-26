@@ -15,10 +15,12 @@ package avcodec
 //#include <libavcodec/avcodec.h>
 //#include <libavutil/avutil.h>
 //#include <libswscale/swscale.h>
+//#include <libavutil/pixfmt.h>
 import "C"
 
 const (
 	AV_PIX_FMT_YUV        = 0
+	AV_PIX_FMT_YUV420P    = C.AV_PIX_FMT_YUV420P
 	AV_PIX_FMT_YUV420P9   = C.AV_PIX_FMT_YUV420P9
 	AV_PIX_FMT_YUV422P9   = C.AV_PIX_FMT_YUV422P9
 	AV_PIX_FMT_YUV444P9   = C.AV_PIX_FMT_YUV444P9
