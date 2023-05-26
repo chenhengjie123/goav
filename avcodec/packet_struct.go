@@ -56,4 +56,5 @@ func (p *Packet) Data() *uint8 {
 
 func (p *Packet) SetData(data []byte) {
 	p.data = (*C.uint8_t)(unsafe.Pointer(&data[0]))
+	p.size = C.int(len(data))
 }
