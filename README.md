@@ -60,12 +60,43 @@ func main() {
 [FFMPEG INSTALL INSTRUCTIONS](https://github.com/FFmpeg/FFmpeg/blob/master/INSTALL.md)
 
 ``` sh
+wget https://code.videolan.org/videolan/x264/-/archive/master/x264-master.zip
+unzip x264-master.zip
+cd x264-master
+./configure --prefix=/usr/local/libx264 --enable-shared --enable-static
+make 
+sudo make install
+
+
+
 wget  https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n3.4.6.zip
 unzip n3.4.6.zip
-./configure --prefix=/usr/local/ffmpeg --enable-shared
-make
+cd FFmpeg-n3.4.6
+./configure --prefix=/usr/local/ffmpeg --enable-shared --enable-libx264 --enable-gpl --extra-cflags=-I/usr/local/libx264/include --extra-ldflags=-L/usr/local/libx264/
+make -j8
 sudo make install
 ``` 
+
+Check if libx264 is successfully added(it should occur in command output like below)
+
+```
+$ /usr/local/ffmpeg/bin/ffmpeg -encoders | grep 264
+ffmpeg version 3.4.6 Copyright (c) 2000-2019 the FFmpeg developers
+  built with Apple clang version 14.0.0 (clang-1400.0.29.202)
+  configuration: --prefix=/usr/local/ffmpeg --enable-shared --enable-libx264 --enable-gpl --extra-cflags=-I/usr/local/libx264/include --extra-ldflags=-L/usr/local/libx264/
+  libavutil      55. 78.100 / 55. 78.100
+  libavcodec     57.107.100 / 57.107.100
+  libavformat    57. 83.100 / 57. 83.100
+  libavdevice    57. 10.100 / 57. 10.100
+  libavfilter     6.107.100 /  6.107.100
+  libswscale      4.  8.100 /  4.  8.100
+  libswresample   2.  9.100 /  2.  9.100
+  libpostproc    54.  7.100 / 54.  7.100
+ V..... libx264              libx264 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10 (codec h264)
+ V..... libx264rgb           libx264 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10 RGB (codec h264)
+ V..... h264_videotoolbox    VideoToolbox H.264 Encoder (codec h264)
+```
+
 
 Add following commands in `~/.profile`
 
